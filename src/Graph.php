@@ -6,7 +6,7 @@
  * Time: 16:44
  */
 
-namespace ShortWay;
+namespace Dijkstra;
 
 class Graph implements GraphInterface
 {

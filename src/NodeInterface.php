@@ -6,7 +6,7 @@
  * Time: 16:43
  */
 
-namespace ShortWay;
+namespace Dijkstra;
 
 interface NodeInterface
 {
