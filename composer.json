@@ -1,4 +1,19 @@
 {
+    "name": "tzepart/dijkstra_algorithm",
+    "type": "library",
+    "license": "MIT",
+    "homepage": "https://github.com/TzepART/dijkstra_algorithm.git",
+    "description": "This is library with Dijkstra Algorithm.",
+    "keywords": [
+        "Dijkstra",
+        "Algorithm"
+    ],
+    "authors": [
+        {
+            "name": "Tsepkov Artem",
+            "email": "tzepart@gmail.com"
+        }
+    ],
     "autoload": {
         "psr-4": {
             "Dijkstra\\": "src/"

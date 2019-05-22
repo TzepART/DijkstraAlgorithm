@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: artem.tsepkov
- * Date: 2019-04-25
- * Time: 16:43
- */
 
 namespace Dijkstra;
 
