@@ -1,6 +1,10 @@
 <?php
+declare(strict_types=1);
 
 namespace Dijkstra\Model;
+
+use Dijkstra\Exception\UnableInsertMultipleNodesException;
+use Dijkstra\Exception\UnableFindInGraphException;
 
 interface GraphInterface
 {
@@ -11,19 +15,19 @@ interface GraphInterface
      * @param NodeInterface $node
      *
      * @return Graph
-     * @throws \Exception
+     * @throws UnableInsertMultipleNodesException
      */
     public function add(NodeInterface $node);
 
     /**
      * Returns the node identified with the $id associated to this graph.
      *
-     * @param mixed $id
+     * @param int $id
      *
      * @return NodeInterface
-     * @throws \Exception
+     * @throws UnableFindInGraphException
      */
-    public function getNode($id);
+    public function getNode(int $id);
 
     /**
      * Returns all the nodes that belong to this graph.

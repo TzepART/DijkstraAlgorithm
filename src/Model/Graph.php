@@ -3,6 +3,10 @@ declare(strict_types=1);
 
 namespace Dijkstra\Model;
 
+use Dijkstra\ConstantMessage;
+use Dijkstra\Exception\UnableInsertMultipleNodesException;
+use Dijkstra\Exception\UnableFindInGraphException;
+
 class Graph implements GraphInterface
 {
     /**
@@ -18,12 +22,12 @@ class Graph implements GraphInterface
      * @param NodeInterface $node
      *
      * @return Graph
-     * @throws \Exception
+     * @throws UnableInsertMultipleNodesException
      */
     public function add(NodeInterface $node)
     {
         if (array_key_exists($node->getId(), $this->getNodes())) {
-            throw new \Exception('Unable to insert multiple Nodes with the same ID in a Graph');
+            throw new UnableInsertMultipleNodesException(ConstantMessage::UNABLE_INSERT_MULTIPLE_NODES_ERROR);
         }
         $this->nodes[$node->getId()] = $node;
 
@@ -36,13 +40,13 @@ class Graph implements GraphInterface
      * @param mixed $id
      *
      * @return Node
-     * @throws \Exception
+     * @throws UnableFindInGraphException
      */
-    public function getNode($id)
+    public function getNode(int $id)
     {
         $nodes = $this->getNodes();
         if (!array_key_exists($id, $nodes)) {
-            throw new \Exception("Unable to find $id in the Graph");
+            throw new UnableFindInGraphException(sprintf(ConstantMessage::UNABLE_FIND_IN_GRAPH_ERROR, $id));
         }
 
         return $nodes[$id];
