@@ -191,7 +191,7 @@ class DijkstraAlgorithm
     /**
      * Checks wheter the current algorithm has been solved or not.
      *
-     * @return boolean
+     * @return bool
      */
     protected function isSolved()
     {

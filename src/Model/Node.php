@@ -5,22 +5,37 @@ namespace Dijkstra\Model;
 
 class Node implements NodeInterface
 {
+    /**
+     * @var int
+     */
     protected $id;
 
+    /**
+     * @var int
+     */
     protected $potential;
 
+    /**
+     * @var NodeInterface
+     */
     protected $potentialFrom;
 
+    /**
+     * @var array
+     */
     protected $connections = [];
 
-    protected $passed      = false;
+    /**
+     * @var bool
+     */
+    protected $passed = false;
 
     /**
      * Instantiates a new node, requiring a ID to avoid collisions.
      *
-     * @param mixed $id
+     * @param int $id
      */
-    public function __construct($id)
+    public function __construct(int $id)
     {
         $this->id = $id;
     }
@@ -62,9 +77,9 @@ class Node implements NodeInterface
     /**
      * Returns the identifier of this node.
      *
-     * @return mixed
+     * @return int
      */
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
@@ -74,7 +89,7 @@ class Node implements NodeInterface
      *
      * @return integer
      */
-    public function getPotential()
+    public function getPotential():? int
     {
         return $this->potential;
     }
@@ -82,9 +97,9 @@ class Node implements NodeInterface
     /**
      * Returns the node which gave to the current node its potential.
      *
-     * @return Node
+     * @return NodeInterface
      */
-    public function getPotentialFrom()
+    public function getPotentialFrom(): NodeInterface
     {
         return $this->potentialFrom;
     }
@@ -92,9 +107,9 @@ class Node implements NodeInterface
     /**
      * Returns whether the node has passed or not.
      *
-     * @return boolean
+     * @return bool
      */
-    public function isPassed()
+    public function isPassed(): bool
     {
         return $this->passed;
     }
@@ -103,7 +118,7 @@ class Node implements NodeInterface
      * Marks this node as passed, meaning that, in the scope of a graph, he
      * has already been processed in order to calculate its potential.
      */
-    public function markPassed()
+    public function markPassed(): void
     {
         $this->passed = true;
     }
@@ -115,9 +130,9 @@ class Node implements NodeInterface
      * @param integer       $potential
      * @param NodeInterface $from
      *
-     * @return boolean
+     * @return bool
      */
-    public function setPotential($potential, NodeInterface $from)
+    public function setPotential($potential, NodeInterface $from): bool
     {
         $potential = (int) $potential;
         if (!$this->getPotential() || $potential < $this->getPotential()) {

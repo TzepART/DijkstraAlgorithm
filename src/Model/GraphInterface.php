@@ -27,12 +27,12 @@ interface GraphInterface
      * @return NodeInterface
      * @throws UnableFindInGraphException
      */
-    public function getNode(int $id);
+    public function getNode(int $id): NodeInterface;
 
     /**
      * Returns all the nodes that belong to this graph.
      *
      * @return array
      */
-    public function getNodes();
+    public function getNodes(): array;
 }

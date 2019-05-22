@@ -24,36 +24,37 @@ interface NodeInterface
     /**
      * Returns the identifier of this node.
      *
-     * @return mixed
+     * @return int
      */
-    public function getId();
+    public function getId(): int;
 
     /**
      * Returns node's potential.
      *
-     * @return integer
+     * @return integer|null
      */
-    public function getPotential();
+    public function getPotential():? int;
 
     /**
      * Returns the node which gave to the current node its potential.
      *
-     * @return Node
+     * @return NodeInterface
      */
-    public function getPotentialFrom();
+    public function getPotentialFrom(): NodeInterface;
 
     /**
      * Returns whether the node has passed or not.
      *
-     * @return boolean
+     * @return bool
      */
-    public function isPassed();
+    public function isPassed(): bool;
 
     /**
      * Marks this node as passed, meaning that, in the scope of a graph, he
      * has already been processed in order to calculate its potential.
+     * @return void
      */
-    public function markPassed();
+    public function markPassed(): void;
 
     /**
      * Sets the potential for the node, if the node has no potential or the
@@ -62,7 +63,7 @@ interface NodeInterface
      * @param integer       $potential
      * @param NodeInterface $from
      *
-     * @return boolean
+     * @return bool
      */
-    public function setPotential($potential, NodeInterface $from);
+    public function setPotential($potential, NodeInterface $from): bool;
 }

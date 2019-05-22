@@ -37,12 +37,12 @@ class Graph implements GraphInterface
     /**
      * Returns the node identified with the $id associated to this graph.
      *
-     * @param mixed $id
+     * @param int $id
      *
-     * @return Node
+     * @return NodeInterface
      * @throws UnableFindInGraphException
      */
-    public function getNode(int $id)
+    public function getNode(int $id): NodeInterface
     {
         $nodes = $this->getNodes();
         if (!array_key_exists($id, $nodes)) {
@@ -57,7 +57,7 @@ class Graph implements GraphInterface
      *
      * @return array
      */
-    public function getNodes()
+    public function getNodes(): array
     {
         return $this->nodes;
     }
