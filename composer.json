@@ -1,7 +1,7 @@
 {
     "autoload": {
-        "psr-0": {
-            "ShortWay": "ShortWay/"
+        "psr-4": {
+            "Dijkstra\\": "src/"
         }
     }
 }

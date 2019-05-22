@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-require __DIR__ . "/../autoload.php";
+require __DIR__ . "/autoload.php";
 
-use \ShortWay\Graph;
-use \ShortWay\Node;
-use \ShortWay\Dijkstra;
+use \Dijkstra\Graph;
+use \Dijkstra\Node;
+use \Dijkstra\DijkstraAlgorithm;
 
 function printShortestPath($from_name, $to_name, $routes)
 {
@@ -29,7 +29,7 @@ function printShortestPath($from_name, $to_name, $routes)
         $from_node->connect($to_node, $price);
     }
 
-    $g          = new Dijkstra($graph);
+    $g          = new DijkstraAlgorithm($graph);
     $start_node = $graph->getNode($from_name);
     $end_node   = $graph->getNode($to_name);
     $g->setStartingNode($start_node);

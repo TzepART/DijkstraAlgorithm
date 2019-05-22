@@ -6,9 +6,9 @@
  * Time: 16:39
  */
 
-namespace ShortWay;
+namespace Dijkstra;
 
-class Dijkstra
+class DijkstraAlgorithm
 {
     private $startingNode;
 
