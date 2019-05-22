@@ -1,6 +1,6 @@
 <?php
 
-namespace Dijkstra;
+namespace Dijkstra\Model;
 
 interface GraphInterface
 {

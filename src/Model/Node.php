@@ -1,6 +1,7 @@
 <?php
+declare(strict_types=1);
 
-namespace Dijkstra;
+namespace Dijkstra\Model;
 
 class Node implements NodeInterface
 {

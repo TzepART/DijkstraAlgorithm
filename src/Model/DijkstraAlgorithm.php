@@ -1,6 +1,11 @@
 <?php
+declare(strict_types=1);
 
-namespace Dijkstra;
+namespace Dijkstra\Model;
+
+use Dijkstra\ConstantMessage;
+use Dijkstra\Exception\CannotCalculateDistanceException;
+use Dijkstra\Exception\CannotSolveWithoutBeginOrEndException;
 
 class DijkstraAlgorithm
 {
@@ -32,9 +37,7 @@ class DijkstraAlgorithm
     public function getDistance()
     {
         if (!$this->isSolved()) {
-            throw new \Exception(
-                "Cannot calculate the distance of a non-solved algorithm:\nDid you forget to call ->solve()?"
-            );
+            throw new CannotCalculateDistanceException(ConstantMessage::CAN_NOT_CALCULATE_DISTANCE_ERROR);
         }
 
         return $this->getEndingNode()->getPotential();
@@ -124,7 +127,7 @@ class DijkstraAlgorithm
     public function solve()
     {
         if (!$this->getStartingNode() || !$this->getEndingNode()) {
-            throw new \Exception("Cannot solve the algorithm without both starting and ending nodes");
+            throw new CannotSolveWithoutBeginOrEndException(ConstantMessage::CAN_NOT_SOLVE_WITHOUT_BEGIN_OR_END_ERROR);
         }
         $this->calculatePotentials($this->getStartingNode());
         $this->solution = $this->getShortestPath();
