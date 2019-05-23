@@ -17,10 +17,10 @@ interface GraphInterface
      * @return Graph
      * @throws UnableInsertMultipleNodesException
      */
-    public function add(NodeInterface $node);
+    public function addNode(NodeInterface $node);
 
     /**
-     * Returns the node identified with the $id associated to this graph.
+     * Get the node identified with the $id associated to this graph.
      *
      * @param int $id
      *
@@ -30,7 +30,7 @@ interface GraphInterface
     public function getNode(int $id): NodeInterface;
 
     /**
-     * Returns all the nodes that belong to this graph.
+     * Get all the nodes that belong to this graph.
      *
      * @return array
      */
