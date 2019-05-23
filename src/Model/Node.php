@@ -41,40 +41,6 @@ class Node implements NodeInterface
     }
 
     /**
-     * Connects the node to another $node.
-     * A $distance, to balance the connection, can be specified.
-     *
-     * @param NodeInterface $node
-     * @param integer       $distance
-     */
-    public function connect(NodeInterface $node, $distance = 1)
-    {
-        $this->connections[$node->getId()] = $distance;
-    }
-
-    /**
-     * Returns the distance to the node.
-     *
-     * @param NodeInterface $node
-     *
-     * @return array
-     */
-    public function getDistance(NodeInterface $node)
-    {
-        return $this->connections[$node->getId()];
-    }
-
-    /**
-     * Returns the connections of the current node.
-     *
-     * @return array
-     */
-    public function getConnections()
-    {
-        return $this->connections;
-    }
-
-    /**
      * Returns the identifier of this node.
      *
      * @return int
@@ -85,17 +51,73 @@ class Node implements NodeInterface
     }
 
     /**
-     * Returns node's potential.
+     * Connects the node to another $node.
+     * A $distance, to balance the connection, can be specified.
+     *
+     * @param NodeInterface $node
+     * @param integer       $distance
+     */
+    public function addConnection(NodeInterface $node, $distance = 1): void
+    {
+        $this->connections[$node->getId()] = $distance;
+    }
+
+    /**
+     * Get the connections of the current node.
+     *
+     * @return array
+     */
+    public function getConnections()
+    {
+        return $this->connections;
+    }
+
+    /**
+     * Get the distance to the node.
+     *
+     * @param NodeInterface $node
+     *
+     * @return array
+     * TODO add exception if connection does not exist
+     */
+    public function getDistanceByNode(NodeInterface $node)
+    {
+        return $this->connections[$node->getId()];
+    }
+
+    /**
+     * Sets the potential for the node, if the node has no potential or the
+     * one it has is higher than the new one.
+     *
+     * @param integer       $potential
+     * @param NodeInterface $from
+     *
+     * @return bool
+     */
+    public function setPotential(int $potential, NodeInterface $from): bool
+    {
+        if (!$this->getPotential() || $potential < $this->getPotential()) {
+            $this->potential     = $potential;
+            $this->potentialFrom = $from;
+
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * Get node's potential.
      *
      * @return integer
      */
-    public function getPotential():? int
+    public function getPotential(): ?int
     {
         return $this->potential;
     }
 
     /**
-     * Returns the node which gave to the current node its potential.
+     * Get the node which gave to the current node its potential.
      *
      * @return NodeInterface
      */
@@ -105,7 +127,7 @@ class Node implements NodeInterface
     }
 
     /**
-     * Returns whether the node has passed or not.
+     * Get whether the node has passed or not.
      *
      * @return bool
      */
@@ -121,27 +143,5 @@ class Node implements NodeInterface
     public function markPassed(): void
     {
         $this->passed = true;
-    }
-
-    /**
-     * Sets the potential for the node, if the node has no potential or the
-     * one it has is higher than the new one.
-     *
-     * @param integer       $potential
-     * @param NodeInterface $from
-     *
-     * @return bool
-     */
-    public function setPotential($potential, NodeInterface $from): bool
-    {
-        $potential = (int) $potential;
-        if (!$this->getPotential() || $potential < $this->getPotential()) {
-            $this->potential     = $potential;
-            $this->potentialFrom = $from;
-
-            return true;
-        }
-
-        return false;
     }
 }

@@ -6,13 +6,20 @@ namespace Dijkstra\Model;
 interface NodeInterface
 {
     /**
+     * Returns the identifier of this node.
+     *
+     * @return int
+     */
+    public function getId(): int;
+
+    /**
      * Connects the node to another $node.
      * A $distance, to balance the connection, can be specified.
      *
      * @param NodeInterface $node
      * @param integer       $distance
      */
-    public function connect(NodeInterface $node, $distance = 1);
+    public function addConnection(NodeInterface $node, $distance = 1): void;
 
     /**
      * Returns the connections of the current node.
@@ -22,18 +29,22 @@ interface NodeInterface
     public function getConnections();
 
     /**
-     * Returns the identifier of this node.
+     * Sets the potential for the node, if the node has no potential or the
+     * one it has is higher than the new one.
      *
-     * @return int
+     * @param integer       $potential
+     * @param NodeInterface $from
+     *
+     * @return bool
      */
-    public function getId(): int;
+    public function setPotential(int $potential, NodeInterface $from): bool;
 
     /**
      * Returns node's potential.
      *
      * @return integer|null
      */
-    public function getPotential():? int;
+    public function getPotential(): ?int;
 
     /**
      * Returns the node which gave to the current node its potential.
@@ -55,15 +66,4 @@ interface NodeInterface
      * @return void
      */
     public function markPassed(): void;
-
-    /**
-     * Sets the potential for the node, if the node has no potential or the
-     * one it has is higher than the new one.
-     *
-     * @param integer       $potential
-     * @param NodeInterface $from
-     *
-     * @return bool
-     */
-    public function setPotential($potential, NodeInterface $from): bool;
 }

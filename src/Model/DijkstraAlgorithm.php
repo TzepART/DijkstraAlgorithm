@@ -17,7 +17,7 @@ class DijkstraAlgorithm
 
     private $paths    = [];
 
-    private $solution = false;
+    private $solution = [];
 
     /**
      * Instantiates a new algorithm, requiring a graph to work with.
@@ -57,6 +57,7 @@ class DijkstraAlgorithm
      * Returns the solution in a human-readable style.
      *
      * @return string
+     * TODO bring to a separate class
      */
     public function getLiteralShortestPath()
     {
@@ -75,7 +76,7 @@ class DijkstraAlgorithm
      *
      * @return array
      */
-    public function getShortestPath()
+    public function getShortestPath(): array
     {
         $path = [];
         $node = $this->getEndingNode();
@@ -91,9 +92,9 @@ class DijkstraAlgorithm
     /**
      * Retrieves the node which we are starting from to calculate the shortest path.
      *
-     * @return Node
+     * @return NodeInterface|null
      */
-    public function getStartingNode()
+    public function getStartingNode(): ?NodeInterface
     {
         return $this->startingNode;
     }
@@ -101,9 +102,9 @@ class DijkstraAlgorithm
     /**
      * Sets the node which we are pointing to.
      *
-     * @param Node $node
+     * @param NodeInterface $node
      */
-    public function setEndingNode(Node $node)
+    public function setEndingNode(NodeInterface $node)
     {
         $this->endingNode = $node;
     }
@@ -111,9 +112,9 @@ class DijkstraAlgorithm
     /**
      * Sets the node which we are starting from to calculate the shortest path.
      *
-     * @param Node $node
+     * @param NodeInterface $node
      */
-    public function setStartingNode(Node $node)
+    public function setStartingNode(NodeInterface $node)
     {
         $this->paths[]      = [$node];
         $this->startingNode = $node;
@@ -124,7 +125,7 @@ class DijkstraAlgorithm
      *
      * @return array
      */
-    public function solve()
+    public function solve(): array
     {
         if (!$this->getStartingNode() || !$this->getEndingNode()) {
             throw new CannotSolveWithoutBeginOrEndException(ConstantMessage::CAN_NOT_SOLVE_WITHOUT_BEGIN_OR_END_ERROR);
@@ -140,9 +141,10 @@ class DijkstraAlgorithm
      * starting point you specify with ->setStartingNode(), traversing
      * the graph due to Node's $connections attribute.
      *
-     * @param Node $node
+     * @param NodeInterface $node
+     * TODO refactoring and decomposition
      */
-    protected function calculatePotentials(Node $node)
+    protected function calculatePotentials(NodeInterface $node)
     {
         $connections = $node->getConnections();
         $sorted      = array_flip($connections);
@@ -195,6 +197,6 @@ class DijkstraAlgorithm
      */
     protected function isSolved()
     {
-        return (bool) $this->solution;
+        return count($this->solution) > 0;
     }
 }

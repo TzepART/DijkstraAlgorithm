@@ -24,7 +24,7 @@ class Graph implements GraphInterface
      * @return Graph
      * @throws UnableInsertMultipleNodesException
      */
-    public function add(NodeInterface $node)
+    public function addNode(NodeInterface $node)
     {
         if (array_key_exists($node->getId(), $this->getNodes())) {
             throw new UnableInsertMultipleNodesException(ConstantMessage::UNABLE_INSERT_MULTIPLE_NODES_ERROR);
@@ -35,7 +35,7 @@ class Graph implements GraphInterface
     }
 
     /**
-     * Returns the node identified with the $id associated to this graph.
+     * Get the node identified with the $id associated to this graph.
      *
      * @param int $id
      *
@@ -44,16 +44,15 @@ class Graph implements GraphInterface
      */
     public function getNode(int $id): NodeInterface
     {
-        $nodes = $this->getNodes();
-        if (!array_key_exists($id, $nodes)) {
+        if (!array_key_exists($id, $this->nodes)) {
             throw new UnableFindInGraphException(sprintf(ConstantMessage::UNABLE_FIND_IN_GRAPH_ERROR, $id));
         }
 
-        return $nodes[$id];
+        return $this->nodes[$id];
     }
 
     /**
-     * Returns all the nodes that belong to this graph.
+     * Get all the nodes that belong to this graph.
      *
      * @return array
      */
