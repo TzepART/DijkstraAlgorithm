@@ -13,12 +13,12 @@ class Node implements NodeInterface
     /**
      * @var int
      */
-    protected $potential;
+    protected $potentialPathDistance;
 
     /**
      * @var NodeInterface
      */
-    protected $potentialFrom;
+    protected $potentialNodeFrom;
 
     /**
      * @var array
@@ -92,18 +92,13 @@ class Node implements NodeInterface
      * @param integer       $potential
      * @param NodeInterface $from
      *
-     * @return bool
      */
-    public function setPotential(int $potential, NodeInterface $from): bool
+    public function setPotentialPathDistance(int $potential, NodeInterface $from): void
     {
-        if (!$this->getPotential() || $potential < $this->getPotential()) {
-            $this->potential     = $potential;
-            $this->potentialFrom = $from;
-
-            return true;
+        if (!$this->getPotentialPathDistance() || $potential < $this->getPotentialPathDistance()) {
+            $this->potentialPathDistance = $potential;
+            $this->potentialNodeFrom     = $from;
         }
-
-        return false;
     }
 
     /**
@@ -111,9 +106,9 @@ class Node implements NodeInterface
      *
      * @return integer
      */
-    public function getPotential(): ?int
+    public function getPotentialPathDistance(): ?int
     {
-        return $this->potential;
+        return $this->potentialPathDistance;
     }
 
     /**
@@ -121,9 +116,9 @@ class Node implements NodeInterface
      *
      * @return NodeInterface
      */
-    public function getPotentialFrom(): NodeInterface
+    public function getPotentialNodeFrom(): NodeInterface
     {
-        return $this->potentialFrom;
+        return $this->potentialNodeFrom;
     }
 
     /**

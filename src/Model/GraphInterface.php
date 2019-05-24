@@ -26,7 +26,7 @@ interface GraphInterface
      * @return NodeInterface
      * @throws UnableFindInGraphException
      */
-    public function getNode(int $id): NodeInterface;
+    public function getNodeById(int $id): NodeInterface;
 
     /**
      * Get all the nodes that belong to this graph.
