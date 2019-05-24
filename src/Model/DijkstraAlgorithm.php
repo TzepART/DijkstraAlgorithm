@@ -40,7 +40,7 @@ class DijkstraAlgorithm
             throw new CannotCalculateDistanceException(ConstantMessage::CAN_NOT_CALCULATE_DISTANCE_ERROR);
         }
 
-        return $this->getEndingNode()->getPotential();
+        return $this->getEndingNode()->getPotentialPathDistance();
     }
 
     /**
@@ -65,7 +65,7 @@ class DijkstraAlgorithm
         $node = $this->getEndingNode();
         while ($node->getId() != $this->getStartingNode()->getId()) {
             $path[] = $node;
-            $node   = $node->getPotentialFrom();
+            $node   = $node->getPotentialNodeFrom();
         }
         $path[] = $this->getStartingNode();
 
@@ -133,20 +133,18 @@ class DijkstraAlgorithm
         $sorted      = array_flip($connections);
         krsort($sorted);
         foreach ($connections as $id => $distance) {
-            $v = $this->getGraph()->getNode($id);
-            $v->setPotential($node->getPotential() + $distance, $node);
+            $node = $this->getGraph()->getNodeById($id);
+            $node->setPotentialPathDistance($node->getPotentialPathDistance() + $distance, $node);
             foreach ($this->getPaths() as $path) {
-                $count = count($path);
-                if ($path[$count - 1]->getId() === $node->getId()) {
-                    $this->paths[] = array_merge($path, [$v]);
+                if (end($path)->getId() === $node->getId()) {
+                    $this->paths[] = array_merge($path, [$node]);
                 }
             }
         }
         $node->markPassed();
-        // Get loop through the current node's nearest connections
-        // to calculate their potentials.
+
         foreach ($sorted as $id) {
-            $node = $this->getGraph()->getNode($id);
+            $node = $this->getGraph()->getNodeById($id);
             if (!$node->isPassed()) {
                 $this->calculatePotentials($node);
             }

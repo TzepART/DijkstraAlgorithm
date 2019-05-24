@@ -42,7 +42,7 @@ class Graph implements GraphInterface
      * @return NodeInterface
      * @throws UnableFindInGraphException
      */
-    public function getNode(int $id): NodeInterface
+    public function getNodeById(int $id): NodeInterface
     {
         if (!array_key_exists($id, $this->nodes)) {
             throw new UnableFindInGraphException(sprintf(ConstantMessage::UNABLE_FIND_IN_GRAPH_ERROR, $id));
