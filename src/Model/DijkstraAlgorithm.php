@@ -133,8 +133,8 @@ class DijkstraAlgorithm
         $sorted      = array_flip($connections);
         krsort($sorted);
         foreach ($connections as $id => $distance) {
-            $node = $this->getGraph()->getNodeById($id);
-            $node->setPotentialPathDistance($node->getPotentialPathDistance() + $distance, $node);
+            $executingNode = $this->getGraph()->getNodeById($id);
+            $executingNode->setPotentialPathDistance($executingNode->getPotentialPathDistance() + $distance, $node);
             foreach ($this->getPaths() as $path) {
                 if (end($path)->getId() === $node->getId()) {
                     $this->paths[] = array_merge($path, [$node]);
