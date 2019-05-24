@@ -66,4 +66,9 @@ interface NodeInterface
      * @return void
      */
     public function markPassed(): void;
+
+    /**
+     * @return string
+     */
+    public function __toString(): string;
 }

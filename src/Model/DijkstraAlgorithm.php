@@ -54,23 +54,6 @@ class DijkstraAlgorithm
     }
 
     /**
-     * Returns the solution in a human-readable style.
-     *
-     * @return string
-     * TODO bring to a separate class
-     */
-    public function getLiteralShortestPath()
-    {
-        $path    = $this->solve();
-        $literal = '';
-        foreach ($path as $p) {
-            $literal .= "{$p->getId()} - ";
-        }
-
-        return substr($literal, 0, count($literal) - 4);
-    }
-
-    /**
      * Reverse-calculates the shortest path of the graph thanks the potentials
      * stored in the nodes.
      *
@@ -123,7 +106,7 @@ class DijkstraAlgorithm
     /**
      * Solves the algorithm and returns the shortest path as an array.
      *
-     * @return array
+     * @return NodeInterface[]
      */
     public function solve(): array
     {

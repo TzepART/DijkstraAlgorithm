@@ -8,7 +8,6 @@ use Dijkstra\Exception\UnableFindInGraphException;
 
 interface GraphInterface
 {
-
     /**
      * Adds a new node to the current graph.
      *

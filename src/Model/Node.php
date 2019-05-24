@@ -144,4 +144,12 @@ class Node implements NodeInterface
     {
         $this->passed = true;
     }
+
+    /**
+     * @return string
+     */
+    public function __toString(): string
+    {
+        return (string) $this->id;
+    }
 }
