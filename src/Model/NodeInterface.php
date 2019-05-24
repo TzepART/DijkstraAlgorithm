@@ -29,29 +29,27 @@ interface NodeInterface
     public function getConnections();
 
     /**
-     * Sets the potential for the node, if the node has no potential or the
+     * Sets the potential path distance for the node, if the node has no potential or the
      * one it has is higher than the new one.
      *
      * @param integer       $potential
      * @param NodeInterface $from
-     *
-     * @return bool
      */
-    public function setPotential(int $potential, NodeInterface $from): bool;
+    public function setPotentialPathDistance(int $potential, NodeInterface $from): void;
 
     /**
-     * Returns node's potential.
+     * Get node's potential path distance.
      *
      * @return integer|null
      */
-    public function getPotential(): ?int;
+    public function getPotentialPathDistance(): ?int;
 
     /**
      * Returns the node which gave to the current node its potential.
      *
      * @return NodeInterface
      */
-    public function getPotentialFrom(): NodeInterface;
+    public function getPotentialNodeFrom(): NodeInterface;
 
     /**
      * Returns whether the node has passed or not.
