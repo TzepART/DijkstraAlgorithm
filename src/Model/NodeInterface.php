@@ -14,19 +14,18 @@ interface NodeInterface
 
     /**
      * Connects the node to another $node.
-     * A $distance, to balance the connection, can be specified.
+     * A $distance, to balance the edge, can be specified.
      *
-     * @param NodeInterface $node
-     * @param integer       $distance
+     * @param EdgeInterface $edge
      */
-    public function addConnection(NodeInterface $node, $distance = 1): void;
+    public function addEdge(EdgeInterface $edge);
 
     /**
-     * Returns the connections of the current node.
+     * Returns the edges of the current node.
      *
      * @return array
      */
-    public function getConnections();
+    public function getEdges();
 
     /**
      * Sets the potential path distance for the node, if the node has no potential or the
@@ -50,20 +49,6 @@ interface NodeInterface
      * @return NodeInterface
      */
     public function getPotentialNodeFrom(): NodeInterface;
-
-    /**
-     * Returns whether the node has passed or not.
-     *
-     * @return bool
-     */
-    public function isPassed(): bool;
-
-    /**
-     * Marks this node as passed, meaning that, in the scope of a graph, he
-     * has already been processed in order to calculate its potential.
-     * @return void
-     */
-    public function markPassed(): void;
 
     /**
      * @return string

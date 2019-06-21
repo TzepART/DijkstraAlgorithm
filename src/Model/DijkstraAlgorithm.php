@@ -122,17 +122,17 @@ class DijkstraAlgorithm
     /**
      * Recursively calculates the potentials of the graph, from the
      * starting point you specify with ->setStartingNode(), traversing
-     * the graph due to Node's $connections attribute.
+     * the graph due to Node's $edges attribute.
      *
      * @param NodeInterface $node
      * TODO refactoring and decomposition
      */
     protected function calculatePotentials(NodeInterface $node)
     {
-        $connections = $node->getConnections();
-        $sorted      = array_flip($connections);
+        $edges = $node->getEdges();
+        $sorted      = array_flip($edges);
         krsort($sorted);
-        foreach ($connections as $id => $distance) {
+        foreach ($edges as $id => $distance) {
             $executingNode = $this->getGraph()->getNodeById($id);
             $executingNode->setPotentialPathDistance($executingNode->getPotentialPathDistance() + $distance, $node);
             foreach ($this->getPaths() as $path) {

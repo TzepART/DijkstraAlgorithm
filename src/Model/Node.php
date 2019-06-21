@@ -23,12 +23,8 @@ class Node implements NodeInterface
     /**
      * @var array
      */
-    protected $connections = [];
+    protected $edges = [];
 
-    /**
-     * @var bool
-     */
-    protected $passed = false;
 
     /**
      * Instantiates a new node, requiring a ID to avoid collisions.
@@ -52,37 +48,26 @@ class Node implements NodeInterface
 
     /**
      * Connects the node to another $node.
-     * A $distance, to balance the connection, can be specified.
+     * A $distance, to balance the edge, can be specified.
      *
-     * @param NodeInterface $node
-     * @param integer       $distance
+     * @param EdgeInterface $edge
+     *
+     * @return Node
      */
-    public function addConnection(NodeInterface $node, $distance = 1): void
+    public function addEdge(EdgeInterface $edge): Node
     {
-        $this->connections[$node->getId()] = $distance;
+        $this->edges[] = $edge;
+        return $this;
     }
 
     /**
-     * Get the connections of the current node.
+     * Get the edges of the current node.
      *
      * @return array
      */
-    public function getConnections()
+    public function getEdges()
     {
-        return $this->connections;
-    }
-
-    /**
-     * Get the distance to the node.
-     *
-     * @param NodeInterface $node
-     *
-     * @return array
-     * TODO add exception if connection does not exist
-     */
-    public function getDistanceByNode(NodeInterface $node)
-    {
-        return $this->connections[$node->getId()];
+        return $this->edges;
     }
 
     /**
@@ -119,25 +104,6 @@ class Node implements NodeInterface
     public function getPotentialNodeFrom(): NodeInterface
     {
         return $this->potentialNodeFrom;
-    }
-
-    /**
-     * Get whether the node has passed or not.
-     *
-     * @return bool
-     */
-    public function isPassed(): bool
-    {
-        return $this->passed;
-    }
-
-    /**
-     * Marks this node as passed, meaning that, in the scope of a graph, he
-     * has already been processed in order to calculate its potential.
-     */
-    public function markPassed(): void
-    {
-        $this->passed = true;
     }
 
     /**
