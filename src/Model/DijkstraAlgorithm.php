@@ -15,7 +15,7 @@ class DijkstraAlgorithm
 
     private $graph;
 
-    private $paths    = [];
+    private $paths = [];
 
     private $solution = [];
 
@@ -65,7 +65,7 @@ class DijkstraAlgorithm
         $node = $this->getEndingNode();
         while ($node->getId() != $this->getStartingNode()->getId()) {
             $path[] = $node;
-            $node   = $node->getPotentialNodeFrom();
+            $node = $node->getPotentialNodeFrom();
         }
         $path[] = $this->getStartingNode();
 
@@ -99,7 +99,7 @@ class DijkstraAlgorithm
      */
     public function setStartingNode(NodeInterface $node)
     {
-        $this->paths[]      = [$node];
+        $this->paths[] = [$node];
         $this->startingNode = $node;
     }
 
@@ -130,7 +130,7 @@ class DijkstraAlgorithm
     protected function calculatePotentials(NodeInterface $node)
     {
         $connections = $node->getConnections();
-        $sorted      = array_flip($connections);
+        $sorted = array_flip($connections);
         krsort($sorted);
         foreach ($connections as $id => $distance) {
             $executingNode = $this->getGraph()->getNodeById($id);

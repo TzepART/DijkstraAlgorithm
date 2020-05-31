@@ -5,5 +5,5 @@ namespace Dijkstra\Service;
 
 interface OutputResultInterface
 {
-    public function getLiteralShortestPath():? string;
+    public function getLiteralShortestPath(): ?string;
 }

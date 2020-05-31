@@ -1,3 +1,4 @@
-# Tests
+# Dijkstra Algorithm
 
- ```  ./vendor/bin/phpunit  -c ./tests/phpunit.xml ```
+## Tests Running
+ `./vendor/bin/phpunit  -c ./tests/phpunit.xml`

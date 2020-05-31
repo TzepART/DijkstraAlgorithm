@@ -17,7 +17,7 @@ interface NodeInterface
      * A $distance, to balance the connection, can be specified.
      *
      * @param NodeInterface $node
-     * @param integer       $distance
+     * @param integer $distance
      */
     public function addConnection(NodeInterface $node, $distance = 1): void;
 
@@ -32,7 +32,7 @@ interface NodeInterface
      * Sets the potential path distance for the node, if the node has no potential or the
      * one it has is higher than the new one.
      *
-     * @param integer       $potential
+     * @param integer $potential
      * @param NodeInterface $from
      */
     public function setPotentialPathDistance(int $potential, NodeInterface $from): void;

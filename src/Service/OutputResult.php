@@ -22,7 +22,7 @@ class OutputResult implements OutputResultInterface
         $this->dijkstraAlgorithm = $dijkstraAlgorithm;
     }
 
-    public function getLiteralShortestPath():? string
+    public function getLiteralShortestPath(): ?string
     {
         return implode(' - ', $this->dijkstraAlgorithm->solve());
     }

@@ -55,7 +55,7 @@ class Node implements NodeInterface
      * A $distance, to balance the connection, can be specified.
      *
      * @param NodeInterface $node
-     * @param integer       $distance
+     * @param integer $distance
      */
     public function addConnection(NodeInterface $node, $distance = 1): void
     {
@@ -89,7 +89,7 @@ class Node implements NodeInterface
      * Sets the potential for the node, if the node has no potential or the
      * one it has is higher than the new one.
      *
-     * @param integer       $potential
+     * @param integer $potential
      * @param NodeInterface $from
      *
      */
@@ -97,7 +97,7 @@ class Node implements NodeInterface
     {
         if (!$this->getPotentialPathDistance() || $potential < $this->getPotentialPathDistance()) {
             $this->potentialPathDistance = $potential;
-            $this->potentialNodeFrom     = $from;
+            $this->potentialNodeFrom = $from;
         }
     }
 
@@ -145,6 +145,6 @@ class Node implements NodeInterface
      */
     public function __toString(): string
     {
-        return (string) $this->id;
+        return (string)$this->id;
     }
 }
